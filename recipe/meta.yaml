@@ -1,5 +1,5 @@
 {% set name = "glob2" %}
-{% set version = "0.5" %}
+{% set version = "0.6" %}
 
 package:
   name: {{ name }}
@@ -7,17 +7,18 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/miracle2k/python-glob2/archive/v{{ version }}.tar.gz
-  sha256: dea12519a27949c2aa3a14f557d08847debfeae0be58e29391ee1d9ceed80174
+  url: https://github.com/miracle2k/python-glob2/archive/{{ version }}.tar.gz
+  sha256: 4f554074f242f01b48a9537409cdbc5e31355a06b51950c95f93fc061c324149
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  noarch: python
+  script: python -m pip install --no-deps --ignore-installed . --verbose
 
 requirements:
   build:
     - python
-    - setuptools
+    - pip
   run:
     - python
 
